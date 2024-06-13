@@ -1,0 +1,20 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint", "prettier"],
+  "files": ["*.html"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended" // Enables eslint-plugin-prettier and displays prettier errors as ESLint errors. Make sure this is the last configuration in the extends array.
+  ],
+  "rules": {
+    // Additional rules and overrides if needed
+    "prettier/prettier": "error" // This ensures .prettierrc.js rules are respected
+  }
+}
