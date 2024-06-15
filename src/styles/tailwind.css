@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Remove arrow on input type number */
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .row {
+    @apply -mx-2 -my-0 -flex -flex-wrap;
+  }
+
+  .row > * {
+    @apply -my-0 -w-full -max-w-full -flex-shrink-0 -px-2;
+  }
+
+  .col {
+    @apply -flex-shrink-0 -flex-grow -basis-0;
+  }
+
+  .col-1 {
+    @apply -w-1/12 -flex-shrink-0 -flex-grow-0 -basis-auto;
+  }
+
+  .col-2 {
+    @apply -w-2/12 -flex-shrink-0 -flex-grow-0 -basis-auto;
+  }
+
+  .col-3 {
+    @apply -w-3/12 -flex-shrink-0 -flex-grow-0 -basis-auto;
+  }
+
+  .col-4 {
+    @apply -w-4/12 -flex-shrink-0 -flex-grow-0 -basis-auto;
+  }
+
+  .col-5 {
+    @apply -w-5/12 -flex-shrink-0 -flex-grow-0 -basis-auto;
+  }
+
+  .col-6 {
+    @apply -w-6/12 -flex-shrink-0 -flex-grow-0 -basis-auto;
+  }
+
+  .col-7 {
+    @apply -w-7/12 -flex-shrink-0 -flex-grow-0 -basis-auto;
+  }
+
+  .col-8 {
+    @apply -w-8/12 -flex-shrink-0 -flex-grow-0 -basis-auto;
+  }
+
+  .col-9 {
+    @apply -w-9/12 -flex-shrink-0 -flex-grow-0 -basis-auto;
+  }
+
+  .col-10 {
+    @apply -w-10/12 -flex-shrink-0 -flex-grow-0 -basis-auto;
+  }
+
+  .col-11 {
+    @apply -w-11/12 -flex-shrink-0 -flex-grow-0 -basis-auto;
+  }
+
+  .col-12 {
+    @apply -w-full -flex-shrink-0 -flex-grow-0 -basis-auto;
+  }
+
+  .col-auto {
+    @apply -w-auto -flex-shrink-0 -flex-grow-0 -basis-auto;
+  }
+}
+
+.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field
+  .mdc-notched-outline__notch {
+  border-right-style: hidden;
+  display: inline;
+}
+
+.mat-mdc-input-element {
+  box-shadow: none !important;
+}
+
+.sticky {
+  position: sticky !important;
+}
+
