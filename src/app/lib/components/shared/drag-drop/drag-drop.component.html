@@ -1,0 +1,48 @@
+<div cdkDropListGroup class="grid gap-4 grid-cols-3 grid-rows-3">
+  <div class="px-8 py-6 pb-3">
+    <app-card-group [title]="'To do'">
+      <div
+        cdkDropList
+        [cdkDropListData]="todo"
+        class="border block rounded overflow-hidden min-h-16 bg-white"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (item of todo; track item) {
+          <app-card cdkDrag>
+            <div card-content class="flex flex-row items-center justify-between box-border text-sm cursor-move p-5 transition ease-in-out" >{{ item }}</div>
+          </app-card>
+        }
+      </div>
+    </app-card-group>
+  </div>
+
+  <!-- <div>
+    <h2>In Progress</h2>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="done"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      @for (item of done; track item) {
+        <div class="example-box" cdkDrag>{{ item }}</div>
+      }
+    </div>
+  </div> -->
+
+  <!-- <div>
+    <h2>Done</h2>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="done"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      @for (item of done; track item) {
+        <div class="example-box" cdkDrag>{{ item }}</div>
+      }
+    </div>
+  </div> -->
+</div>
