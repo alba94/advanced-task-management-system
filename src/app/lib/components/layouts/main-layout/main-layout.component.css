@@ -1,0 +1,25 @@
+:host {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: var(--size-navbar-height) 1fr;
+  gap: 0;
+  grid-template-areas:
+    'sidebar header'
+    'sidebar main';
+  height: 100%;
+  width: 100%;
+}
+
+app-header {
+  grid-area: header;
+  height: var(--size-navbar-height);
+  width: 100%;
+}
+
+main {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  grid-area: main;
+  overflow: auto;
+}
