@@ -1,0 +1,33 @@
+<div class="flex items-center space-x-4 mt-6">
+  <form [formGroup]="form" class="flex items-center space-x-4">
+    <mat-form-field appearance="outline">
+      <mat-label class="font-semibold text-sm text-gray">
+        {{ 'Search...' }}
+      </mat-label>
+      <input
+        matInput
+        formControlName="search"
+        class="border rounded-lg text-sm w-full h-4"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Type</mat-label>
+      <mat-select
+        formControlName="type"
+        multiple
+        (selectionChange)="onChange($event)"
+        class="border rounded-lg text-sm w-full"
+      >
+        @for (type of statusTypes; track type) {
+          <mat-option [value]="type.name">{{ type.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </form>
+  <!-- <button mat-raised-button>Ignore Resolved</button>
+  <div class="ml-3 flex items-center">
+    <div class="mr-3 w-px bg-backgroundMedium self-stretch"></div>
+    <button mat-raised-button (click)="resetAll()">Clear all</button>
+  </div> -->
+</div>
