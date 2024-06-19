@@ -6,7 +6,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
+import { AuthActions } from '@store/auth/auth.actions';
+import { selectAuthError, selectAuthisLoading } from '@store/auth/auth.selectos';
 
 @Component({
   selector: 'app-login',
@@ -26,6 +29,9 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class LoginComponent {
   private readonly _fb = inject(FormBuilder);
+  private readonly _store = inject(Store);
+  errorMessage$ = this._store.select(selectAuthError);
+  isLoading$ = this._store.select(selectAuthisLoading);
 
   form = this._fb.group({
     email: this._fb.control({ value: null, disabled: false }, [
@@ -37,5 +43,16 @@ export class LoginComponent {
     ]),
   });
 
-  onSubmit() {}
+  get controls() {
+    return this.form.controls
+  }
+
+  onSubmit(): void {
+    const { email, password } = this.form.value;
+    if (email && password && this.form.valid) {
+      this._store.dispatch(
+        AuthActions.login({ user: { email, password }, isLoading: true }),
+      );
+    }
+  }
 }
