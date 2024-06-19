@@ -1,7 +1,19 @@
-<mat-card class="bg-gray-lighter" appearance="outlined">
+<mat-card
+  class="bg-gray-lighter border border-gray-200 rounded-lg min-h-16"
+  appearance="outlined"
+>
   <mat-card-header>
-    <mat-card-title>{{ title | translate | uppercase }}</mat-card-title>
-    <app-chip>{{ '' }}</app-chip>
+    <div class="col flex items-center gap-2">
+      <mat-card-title class="text-lg font-bold">
+        {{ title | translate | uppercase }}
+      </mat-card-title>
+      <app-chip>{{ totalItems?.length }}</app-chip>
+    </div>
   </mat-card-header>
-  <mat-card-content><ng-content></ng-content></mat-card-content>
+  <mat-card-content class="p-4"
+    ><ng-content></ng-content
+  ></mat-card-content>
+  <mat-card-content class="p-4 min-h-screen"
+    ><ng-content select="[card-group-footer]"></ng-content
+  ></mat-card-content>
 </mat-card>

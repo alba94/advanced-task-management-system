@@ -1,48 +1,38 @@
-<div cdkDropListGroup class="grid gap-4 grid-cols-3 grid-rows-3">
-  <div class="px-8 py-6 pb-3">
-    <app-card-group [title]="'To do'">
+<div class="grid gap-4 grid-cols-5" cdkDropListGroup>
+  @for (status of statuses; track status) {
+    <app-card-group
+      class="status-list"
+      [title]="status"
+      [totalItems]="issueByStatusSorted$(status) | async"
+    >
       <div
-        cdkDropList
-        [cdkDropListData]="todo"
         class="border block rounded overflow-hidden min-h-16 bg-white"
-        (cdkDropListDropped)="drop($event)"
+        cdkDropList
+        [cdkDropListData]="(filteredTasks$ | async) ?? []"
+        [id]="status"
+        (cdkDropListDropped)="drop($event, status)"
       >
-        @for (item of todo; track item) {
-          <app-card cdkDrag>
-            <div card-content class="flex flex-row items-center justify-between box-border text-sm cursor-move p-5 transition ease-in-out" >{{ item }}</div>
+        @for (task of issueByStatusSorted$(status) | async; track task) {
+          <app-card cdkDrag (click)="emitData(task)" class="cursor-pointer">
+            <div card-title>{{ task.title }}</div>
+            <div card-content class="break-words text-sm text-gray-600 pb-4">
+              <!-- <p class="mb-2">{{ task.description }}</p> -->
+              <!-- <div class="text-xs text-gray-500">
+                <span>Deadline: {{ task.dueDate | date }}</span>
+              </div> -->
+            </div>
+            <div card-footer class="flex justify-between items-center mt-4">
+              <!-- <span>Comments: {{ task.comments.length }}</span> -->
+              <!-- <div>Attachments: {{ item.attachments.length }}</div> -->
+            </div>
           </app-card>
+        }
+        @if (status === _statusEnum.BACKLOG) {
+          <button mat-button class="w-full" (click)="emitData(null)">
+            Add
+          </button>
         }
       </div>
     </app-card-group>
-  </div>
-
-  <!-- <div>
-    <h2>In Progress</h2>
-
-    <div
-      cdkDropList
-      [cdkDropListData]="done"
-      class="example-list"
-      (cdkDropListDropped)="drop($event)"
-    >
-      @for (item of done; track item) {
-        <div class="example-box" cdkDrag>{{ item }}</div>
-      }
-    </div>
-  </div> -->
-
-  <!-- <div>
-    <h2>Done</h2>
-
-    <div
-      cdkDropList
-      [cdkDropListData]="done"
-      class="example-list"
-      (cdkDropListDropped)="drop($event)"
-    >
-      @for (item of done; track item) {
-        <div class="example-box" cdkDrag>{{ item }}</div>
-      }
-    </div>
-  </div> -->
+  }
 </div>

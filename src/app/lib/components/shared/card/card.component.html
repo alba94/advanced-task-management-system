@@ -1,10 +1,13 @@
-<mat-card
-class="bg-gray-lighter"
-  appearance="outlined"
->
-  <mat-card-header>
+<mat-card appearance="outlined" class="max-w">
+  <mat-card-header class="text-lg font-bold text-gray-darker">
     <ng-content select="[card-title]"></ng-content>
   </mat-card-header>
-  <mat-card-content><ng-content select="[card-content]"></ng-content></mat-card-content>
-  <mat-card-footer><ng-content select="[card-footer]"></ng-content></mat-card-footer>
+  <mat-card-content
+    class="text-sm text-gray-darker overflow-hidden text-ellipsis"
+    ><ng-content select="[card-content]"></ng-content
+  ></mat-card-content>
+  <hr class="text-gray-darker" />
+  <mat-card-footer class="p-2"
+    ><ng-content select="[card-footer]"></ng-content
+  ></mat-card-footer>
 </mat-card>
