@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
 import { languageItems, navElements } from '@lib/constants/task.const';
 import { IfUserHasRoleDirective } from '@lib/directives/if-user-authenticated.directive';
 import { Store } from '@ngrx/store';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AuthActions } from '@store/auth/auth.actions';
 
 @Component({
@@ -25,6 +25,7 @@ import { AuthActions } from '@store/auth/auth.actions';
     MatSelectModule,
     IfUserHasRoleDirective,
     RouterModule,
+    TranslateModule
   ],
   templateUrl: './header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

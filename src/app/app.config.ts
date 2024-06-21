@@ -9,12 +9,13 @@ import {
   withViewTransitions,
 } from '@angular/router';
 
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { APP_STORE_PROVIDERS } from '@store/providers';
 import { routes } from './app.routes';
+import { httpResponseHandlerInterceptor } from '@lib/http-interceptors/http-handler.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [

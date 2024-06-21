@@ -20,7 +20,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { statusDisplay } from '@lib/constants/task.const';
-import { StatusEnum } from '@lib/enums/task';
+import { PriorityEnum, StatusEnum, TypeEnum } from '@lib/enums/task';
 import { Task } from '@lib/interfaces/task';
 import { Store, select } from '@ngrx/store';
 import { TaskActions } from '@store/task-manager/task.actions';
@@ -87,7 +87,7 @@ export class DragDropComponent implements OnInit, OnDestroy {
     this._store.dispatch(UserActions.loadUsers());
 
     // this.intervalId = setInterval(() => {
-    //   let randomTaskId = Math.floor(100000 + Math.random() * 900000);
+    //   let randomTaskId = Math.floor(100000 + Math.random() * 900000).toString();
     //   let randomPriority = Math.floor(Math.random() * 3);
     //   let randomStatus = Math.floor(Math.random() * 5);
 
@@ -96,6 +96,8 @@ export class DragDropComponent implements OnInit, OnDestroy {
     //     title: `Random Task ${randomTaskId}`,
     //     description: `Random Description ${randomTaskId}`,
     //     status: <StatusEnum>Object.values(StatusEnum)[randomStatus],
+    //     type: TypeEnum.STORY,
+    //     comments: [],
     //     priority: <PriorityEnum>Object.values(PriorityEnum)[randomPriority],
     //   };
     //   this._store.dispatch(TaskActions.createTask({ task: newRandomTask }));

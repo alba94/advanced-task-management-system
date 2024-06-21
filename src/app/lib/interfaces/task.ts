@@ -22,6 +22,3 @@ export interface TaskComment {
   commentedAt: string | null;
 }
 
-export interface FilterParams {
-
-}

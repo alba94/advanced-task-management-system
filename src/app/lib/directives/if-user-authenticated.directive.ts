@@ -1,7 +1,6 @@
 import { NgIf } from '@angular/common';
 import { Directive, inject, Input } from '@angular/core';
 import { UserRole } from '@lib/enums/task';
-import { Store } from '@ngrx/store';
 
 @Directive({
   selector: '[appIfUserHasRole]',
@@ -15,7 +14,6 @@ import { Store } from '@ngrx/store';
 })
 export class IfUserHasRoleDirective {
   private readonly _ngIfDirective = inject(NgIf);
-  private readonly _store = inject(Store);
 
   @Input({ alias: 'appIfUserHasRole', required: true })
   set role(userRoles: UserRole[]) {

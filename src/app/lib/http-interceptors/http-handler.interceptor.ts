@@ -5,12 +5,9 @@ export const httpResponseHandlerInterceptor: HttpInterceptorFn = (
   req,
   next,
 ) => {
-  const authToken = 'auth-token';
 
   const authReq = req.clone({
-    setHeaders: {
-      Authorization: `Bearer ${authToken}`,
-    },
+    headers: req.headers.set('Access-Control-Allow-Origin', '*')
   });
 
   return next(authReq).pipe(

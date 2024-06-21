@@ -203,15 +203,22 @@
       "id": "9451",
       "title": "Preparing backend API with GraphQL - Update 08/2020",
       "description": "<p>GraphQL authentication API is ready with the enormous support from <a href='https://github.com/nartc' rel='noopener noreferrer' target='_blank'>@nartc</a></p><p><br></p><p>I am using Apollo to integrate with his well-written API. I have closed the first loop <strong>Login -&gt; Received token -&gt; Fetch me -&gt; Fetch project using token.</strong></p><p><br></p><p>Hopefully I will be able to deploy Phase 2 soon to AWS or Azure. Stay tuned!</p><p><br><p>See the current working branch: <a href='https://github.com/trungk18/jira-clone-angular/tree/feature/gql' rel='noopener noreferrer' target='_blank'>https://github.com/trungk18/jira-clone-angular/tree/feature/gql</a></p><br/></p><p><img src='https://i.imgur.com/MpGReIF.gif'/></p>",
+      "priority": "Medium",
+      "status": "InProgress",
       "type": "Story",
       "dueDate": "2024-06-28T22:00:00.000Z",
-      "startDate": "2024-06-19T22:00:00.000Z",
-      "status": "InProgress",
-      "priority": "Medium",
-      "assignedTo": "2",
-      "createdAt": "2020-06-12T14:40:01.262Z",
-      "updatedAt": "2020-06-12T14:48:00.807Z",
-      "comments": []
+      "startDate": "2024-06-20T22:00:00.000Z",
+      "assignedTo": "1",
+      "assignedBy": 1,
+      "attachments": "C:\\fakepath\\test.txt",
+      "comment": "comment",
+      "comments": [
+        {
+          "comment": "comment",
+          "commentedAt": "2024-06-21T12:25:01.395Z",
+          "commentedBy": null
+        }
+      ]
     },
     {
       "id": "9546",
@@ -254,22 +261,6 @@
       "createdAt": "2020-06-12T14:40:00.000Z",
       "updatedAt": "2020-06-12T14:51:00.000Z",
       "comments": []
-    },
-    {
-      "id": "c3e0",
-      "title": "sdfsdf",
-      "description": "",
-      "priority": "High",
-      "status": "Todo",
-      "type": "Bug",
-      "dueDate": "2024-06-27T22:00:00.000Z",
-      "startDate": "2024-06-04T22:00:00.000Z",
-      "assignedTo": "1",
-      "assignedBy": 1,
-      "attachments": null,
-      "comments": [
-        null
-      ]
     },
     {
       "id": "66da",
@@ -406,6 +397,27 @@
           "comment": "asdfasdf",
           "commentedAt": "2024-06-20T20:34:47.489Z",
           "commentedBy": 0
+        }
+      ]
+    },
+    {
+      "id": "5f4a",
+      "title": "New title for today",
+      "description": "Task description edited",
+      "priority": "High",
+      "status": "Todo",
+      "type": "Bug",
+      "dueDate": "2024-06-28T22:00:00.000Z",
+      "startDate": "2024-06-24T22:00:00.000Z",
+      "assignedTo": "1",
+      "assignedBy": 1,
+      "attachments": "",
+      "comment": null,
+      "comments": [
+        {
+          "comment": "commented",
+          "commentedAt": "2024-06-21T12:16:03.519Z",
+          "commentedBy": null
         }
       ]
     }

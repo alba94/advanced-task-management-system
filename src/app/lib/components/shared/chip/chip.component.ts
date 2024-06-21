@@ -4,8 +4,7 @@ import { Component, HostBinding, Input } from '@angular/core';
   selector: 'app-chip',
   standalone: true,
   imports: [],
-  templateUrl: './chip.component.html',
-  styleUrl: './chip.component.css',
+  template: '<ng-content></ng-content>',
 })
 export class ChipComponent {
   @Input() color: string = '';

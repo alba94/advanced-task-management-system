@@ -32,6 +32,6 @@ export const statusTypesModel = [
 
 export const priorityTypesModel = [
   { name: PriorityEnum.HIGH, id: 1 },
-  { name: PriorityEnum.LOW, id: 2 },
   { name: PriorityEnum.MEDIUM, id: 3 },
+  { name: PriorityEnum.LOW, id: 2 },
 ];

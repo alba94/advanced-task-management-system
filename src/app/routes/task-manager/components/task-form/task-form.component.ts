@@ -65,13 +65,11 @@ export class TaskFormComponent implements OnInit {
   usersList: UserRS[] = [];
   statusTypes = statusTypesModel;
   priorityTypes = priorityTypesModel;
-  showAutocomplete = false;
   comments = this.data?.comments;
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (event.key === '@') {
-      this.showAutocomplete = true;
     }
   }
 

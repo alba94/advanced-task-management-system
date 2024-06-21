@@ -3,5 +3,8 @@
     "title": "Task Management System",
     "email": "Email",
     "password": "Password"
+  },
+  "header": {
+    "title":"Task Management System"
   }
 }
