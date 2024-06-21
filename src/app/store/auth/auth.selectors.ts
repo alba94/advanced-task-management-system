@@ -1,4 +1,3 @@
-import { UserRole } from '@lib/enums/task';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { AuthFeatureState, authFeatureKey } from './auth.reducer';
 
@@ -15,7 +14,7 @@ export const selectAuthUser = createSelector(
   (state) => state.user,
 );
 
-export const selectAuthisLoading = createSelector(
+export const selectAuthIsLoading = createSelector(
   selectAuthFeatureState,
   (state) => state.isLoading,
 );

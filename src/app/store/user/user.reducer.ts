@@ -1,6 +1,6 @@
-import { createReducer, on } from "@ngrx/store";
-import { UserActions } from "./user.actions";
-import { UserRS } from "@lib/interfaces/user";
+import { createReducer, on } from '@ngrx/store';
+import { UserActions } from './user.actions';
+import { UserRS } from '@lib/interfaces/user';
 
 export const usersFeatureKey = 'users';
 
@@ -21,4 +21,4 @@ export const userReducer = createReducer(
     ...state,
     users: payload.users,
   })),
-)
+);

@@ -1,6 +1,6 @@
 import { UserRole } from '@lib/enums/task';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { UsersFeatureState, usersFeatureKey } from './user.reducer';
+import { usersFeatureKey, UsersFeatureState } from './user.reducer';
 
 const selectUsersFeatureState =
   createFeatureSelector<UsersFeatureState>(usersFeatureKey);

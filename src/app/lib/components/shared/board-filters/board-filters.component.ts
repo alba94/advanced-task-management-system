@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,7 +8,7 @@ import { TypeEnum } from '@lib/enums/task';
 import { Store } from '@ngrx/store';
 import { TaskActions } from '@store/task-manager/task.actions';
 import { FilterState } from '@store/task-manager/task.reducer';
-import { distinctUntilChanged, filter } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter } from 'rxjs';
 
 @Component({
   selector: 'app-board-filters',
@@ -35,15 +35,17 @@ export class BoardFiltersComponent implements OnInit {
 
   form = this._fb.group({
     search: [''],
-    type: [[]],
+    type: [],
   });
 
   get controls() {
     return this.form.controls;
   }
+
   ngOnInit(): void {
     this.form.controls.search.valueChanges
       .pipe(
+        debounceTime(300),
         distinctUntilChanged(),
         filter((term): term is string => term !== null && term !== undefined),
       )
@@ -61,6 +63,7 @@ export class BoardFiltersComponent implements OnInit {
   }
 
   resetAll() {
+    this.form.reset();
     this._store.dispatch(TaskActions.resetFilters());
   }
 }

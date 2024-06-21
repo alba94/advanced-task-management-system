@@ -2,12 +2,25 @@
   <form [formGroup]="form">
     <div class="flex item-center justify-between">
       <mat-form-field>
+        <mat-label>Type</mat-label>
         <mat-select formControlName="type">
           @for (status of statusTypes; track status) {
             <mat-option [value]="status.name">{{ status.name }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
+
+      <button type="button" mat-raised-button (click)="fileInput.click()">
+        Choose File
+      </button>
+      <input
+        hidden
+        formControlName="attachments"
+        (change)="onFileSelected($event)"
+        #fileInput
+        type="file"
+        id="file"
+      />
 
       <button mat-icon-button (click)="delete()">
         <mat-icon>delete</mat-icon>
@@ -22,6 +35,9 @@
             placeholder="Enter title"
             class="border rounded-lg text-sm w-full"
           />
+          @if (controls.title.hasError('required')) {
+            <mat-error>Field is required</mat-error>
+          }
         </mat-form-field>
         <div class="pt-4 pb-2 text-15 font-medium">Description</div>
         <mat-form-field class="example-full-width">
@@ -32,10 +48,38 @@
           ></textarea>
         </mat-form-field>
         <div class="pt-4 pb-2 text-15 font-medium">Comments</div>
-        <!-- <app-task-comments
-          [comments]="taskData.comments"
-          (onEmit)="onCommentEmit($event)"
-        ></app-task-comments> -->
+        <div class="pl-10">
+          <!-- <button mat-icon-button class="absolute top-0 left-0">
+            <mat-icon>person</mat-icon>
+          </button> -->
+          <div>
+            <mat-form-field appearance="outline">
+              <textarea
+                #textarea
+                formControlName="comment"
+                placeholder="Add a comment"
+                [rows]="2"
+                matInput
+                cdkTextareaAutosize
+                class="border rounded-lg text-sm w-full"
+              >
+              </textarea>
+            </mat-form-field>
+          </div>
+          @if (comments && comments.length) {
+            @for (comment of taskData.comments; track comment) {
+              <div class="flex">
+                <div class="inline-block mr-3 mb-2 text-bold font-medium">
+                   {{ getUsernameForId(comment?.commentedBy?.toString() ?? '') }}
+                </div>
+                <div class="inline-block pb-2 text-bold text-sm">
+                  {{ comment?.commentedAt | date }}
+                </div>
+              </div>
+              <div>{{ comment?.comment }}</div>
+            }
+          }
+        </div>
       </div>
 
       <div>
@@ -50,7 +94,7 @@
           </mat-select>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Assignees</mat-label>
+          <mat-label>Assigned to</mat-label>
           <mat-select formControlName="assignedTo">
             @for (user of users$ | async; track user) {
               <mat-option [value]="user.id">{{ user.username }}</mat-option>
@@ -59,16 +103,46 @@
         </mat-form-field>
 
         <mat-form-field>
+          <mat-label>Start date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="startDatePicker"
+            type="text"
+            autocomplete="off"
+            (dateChange)="startDateSelected($event)"
+            [matDatepickerFilter]="dateNotPreviousThanToday"
+            formControlName="startDate"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="startDatePicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #startDatePicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
           <mat-label>End date</mat-label>
-          <input matInput [matDatepicker]="picker" type="text" autocomplete="off" formControlName="dueDate">
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+          <input
+            matInput
+            [matDatepicker]="dueDatePicker"
+            type="text"
+            autocomplete="off"
+            [matDatepickerFilter]="dateFilter"
+            formControlName="dueDate"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="dueDatePicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #dueDatePicker></mat-datepicker>
+          @if (controls.dueDate.hasError('invalidEndDate')) {
+            <mat-error>End date cant be before start date</mat-error>
+          }
         </mat-form-field>
 
         <div
           class="mt-3 pt-3 leading-loose border-t border-borderLightest text-textMedium text-13"
-        >
-        </div>
+        ></div>
       </div>
     </div>
     <div class="flex justify-between">

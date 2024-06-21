@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { UserRole } from '@lib/enums/task';
 import { UserService } from '@lib/services/user.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';

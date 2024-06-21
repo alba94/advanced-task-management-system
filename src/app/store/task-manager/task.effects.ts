@@ -1,10 +1,12 @@
-import { Injectable, inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Task } from '@lib/interfaces/task';
 import { TaskService } from '@lib/services/task.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { DeleteTaskDialogComponent } from '@routes/task-manager/components/delete-task-dialog/delete-task-dialog.component';
-import { map, of, switchMap, tap } from 'rxjs';
+import {
+  DeleteTaskDialogComponent,
+} from '@routes/task-manager/components/delete-task-dialog/delete-task-dialog.component';
+import { map, of, switchMap } from 'rxjs';
 import { TaskActions } from './task.actions';
 
 @Injectable()
@@ -57,36 +59,40 @@ export class TaskEffects {
     ),
   );
 
-  openDialog$ = createEffect(
-    () =>
-      this._actions$.pipe(
-        ofType(TaskActions.deleteTask),
-        switchMap((payload) => {
-          const dialogRef: MatDialogRef<DeleteTaskDialogComponent> =
-            this._dialog.open(DeleteTaskDialogComponent, {
-              width: '75vm',
-            });
+  openDialog$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(TaskActions.deleteTask),
+      switchMap((action) => {
+        const dialogRef: MatDialogRef<DeleteTaskDialogComponent> =
+          this._dialog.open(DeleteTaskDialogComponent, {
+            width: '75vm',
+          });
 
-          return dialogRef.afterClosed().pipe(
-            switchMap((result) => {
-              if (result) {
-                return this._taskService
-                  .deleteTask(Number(payload.id))
-                  .pipe(tap(() => TaskActions.deleteTask({ id: payload.id })));
-              } else {
-                return of(null);
-              }
-            }),
-          );
-        }),
-      ),
-    { dispatch: false },
+        return dialogRef.afterClosed().pipe(
+          switchMap((result) => {
+            if (result) {
+              return this._taskService
+                .deleteTask(action.id)
+                .pipe(
+                  map(() => TaskActions.deleteTaskSuccess({ id: action.id })),
+                );
+            } else {
+              return of();
+            }
+          }),
+        );
+      }),
+    ),
   );
 
-  submitFilters$ = createEffect(() =>
+  addComment$ = createEffect(() =>
     this._actions$.pipe(
-      ofType(TaskActions.submitFilters),
-      map(() => TaskActions.resetFilters()),
+      ofType(TaskActions.addComment),
+      switchMap((action) =>
+        this._taskService
+          .addComment(action.id, action.comment)
+          .pipe(map((task: Task) => TaskActions.addCommentSuccess({ task }))),
+      ),
     ),
   );
 }

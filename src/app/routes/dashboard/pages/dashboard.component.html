@@ -1,1 +1,56 @@
-<p>dashboard works!</p>
+<div class="flex bg-gray justify-center">
+  <div class="w-11/12 p-6">
+    <div class="flex justify-between items-center mb-4">
+      <app-card class="w-full">
+        <div class="row flex" card-content>
+          @for (
+            filteredTasks of selectTaskCountsByStatus$ | async;
+            track filteredTasks
+          ) {
+            <div class="bg-white p-4 rounded flex-1">
+              <div class="text-gray-dark">{{ filteredTasks.status }}</div>
+              <div class="text-2xl font-bold">{{ filteredTasks.count }}</div>
+            </div>
+          }
+        </div>
+      </app-card>
+    </div>
+    <div class="grid grid-cols-2 gap-4 mb-4">
+      <div class="bg-white p-4 rounded shadow">
+        <div class="text-xl font-bold mb-2">Assigned to me</div>
+        <table
+          mat-table
+          [dataSource]="(currentUserTasks$ | async) ?? []"
+          class="min-w-full divide-y divide-gray-200 shadow-md"
+        >
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Task name</th>
+            <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+          </ng-container>
+          <ng-container matColumnDef="priority">
+            <th mat-header-cell *matHeaderCellDef>Priority</th>
+            <td mat-cell *matCellDef="let element">{{ element.priority }}</td>
+          </ng-container>
+          <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef>Task type</th>
+            <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+          </ng-container>
+          <tr
+            mat-header-row
+            *matHeaderRowDef="displayedColumns"
+            class="bg-gray-light"
+          ></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+      <div class="bg-white p-4 rounded shadow">
+        <div class="text-xl font-bold mb-2">Calendar</div>
+        <full-calendar [options]="calendarOptions" [events]="currentUserTasksForCalendar$ | async">
+          <ng-template #eventContent let-arg>
+            <i>{{ arg.event.title }}</i>
+          </ng-template>
+        </full-calendar>
+      </div>
+    </div>
+  </div>
+</div>

@@ -17,7 +17,7 @@
           @if (controls.email.hasError('required')) {
             <mat-error>Email is <strong>required</strong></mat-error>
           }
-          @if (controls.password.hasError('email')) {
+          @if (controls.email.hasError('email')) {
             <mat-error>Email is not in the correct format!</mat-error>
           }
         </mat-form-field>
@@ -41,13 +41,14 @@
             [disabled]="form.invalid"
             class="w-full bg-black text-white rounded-lg disabled:bg-gray-dark"
           >
-            Login
+            @if (isLoading$ | async) {
+              ...
+            } @else {
+              Login
+            }
           </button>
         </div>
       </form>
     </div>
   </div>
-  <!-- @if (errorMessage$ | async; as errorMessage) {
-    <p>{{ errorMessage }}</p>
-  } -->
 </div>

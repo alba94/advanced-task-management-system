@@ -1,4 +1,4 @@
-import { PriorityEnum, TypeEnum } from '@lib/enums/task';
+import { TypeEnum } from '@lib/enums/task';
 import { Task } from '@lib/interfaces/task';
 import { createReducer, on } from '@ngrx/store';
 import { TaskActions } from './task.actions';
@@ -7,8 +7,6 @@ export const taskFeatureKey = 'tasks';
 
 export interface FilterState {
   searchValue: string;
-  onlyMyTasks: boolean;
-  priority: PriorityEnum;
   type: TypeEnum[];
 }
 
@@ -25,9 +23,7 @@ const initialState: TaskFeatureState = {
   error: null,
   filters: {
     searchValue: '',
-    onlyMyTasks: false,
-    priority: PriorityEnum.HIGH,
-    type: []
+    type: [],
   },
 };
 
@@ -44,9 +40,20 @@ export const taskReducer = createReducer(
   })),
   on(TaskActions.createTask, (state, payload) => ({
     ...state,
-    tasks: [...state.tasks, payload.task],
+    isLoading: true,
   })),
-  on(TaskActions.deleteTask, (state, payload) => ({
+  on(TaskActions.createTaskSuccess, (state, payload) => ({
+    ...state,
+    tasks: [...state.tasks, payload.task],
+    isLoading: false,
+  })),
+  on(TaskActions.updateTask, (state, payload) => ({
+    ...state,
+    tasks: state.tasks.map((task) =>
+      task.id === payload.task.id ? { ...task, ...payload.task } : task,
+    ),
+  })),
+  on(TaskActions.deleteTaskSuccess, (state, payload) => ({
     ...state,
     tasks: [...state.tasks.filter((task) => task.id !== payload.id)],
     isLoading: false,
@@ -63,24 +70,21 @@ export const taskReducer = createReducer(
       return task;
     }),
   })),
-  on(TaskActions.setSearchParams, (state, { searchParam }) => ({
+  on(TaskActions.addComment, (state, payload) => ({
     ...state,
-    filters: { ...state.filters, ...initialState.filters, searchParam },
-  })),
-  on(TaskActions.setFiltersParams, (state, { filters }) => ({
-    ...state,
-    filters: { ...state.filters, ...initialState.filters, ...filters },
-  })),
-  on(
-    TaskActions.setSearchAndFiltersParams,
-    (state, { filters }) => ({
-      ...state,
-      filters: { ...state.filters, ...filters },
+    tasks: state.tasks.map((task) => {
+      if (task.id === payload.id) {
+        return {
+          ...task,
+          comments: [...(task.comments as []), payload.comment],
+        };
+      }
+      return task;
     }),
-  ),
-  on(TaskActions.refreshFilters, (state) => ({
+  })),
+  on(TaskActions.setSearchAndFiltersParams, (state, { filters }) => ({
     ...state,
-    filters: { ...state.filters },
+    filters: { ...state.filters, ...filters },
   })),
   on(TaskActions.resetFilters, (state) => ({
     ...state,

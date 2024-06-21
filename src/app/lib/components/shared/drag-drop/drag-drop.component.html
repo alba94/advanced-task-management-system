@@ -1,9 +1,9 @@
-<div class="grid gap-4 grid-cols-5" cdkDropListGroup>
+<div class="grid gap-4 grid-cols-4" cdkDropListGroup>
   @for (status of statuses; track status) {
     <app-card-group
       class="status-list"
       [title]="status"
-      [totalItems]="issueByStatusSorted$(status) | async"
+      [totalItems]="taskByStatusSorted$(status) | async"
     >
       <div
         class="border block rounded overflow-hidden min-h-16 bg-white"
@@ -12,7 +12,7 @@
         [id]="status"
         (cdkDropListDropped)="drop($event, status)"
       >
-        @for (task of issueByStatusSorted$(status) | async; track task) {
+        @for (task of taskByStatusSorted$(status) | async; track task) {
           <app-card cdkDrag (click)="emitData(task)" class="cursor-pointer">
             <div card-title>{{ task.title }}</div>
             <div card-content class="break-words text-sm text-gray-600 pb-4">
@@ -29,7 +29,7 @@
         }
         @if (status === _statusEnum.BACKLOG) {
           <button mat-button class="w-full" (click)="emitData(null)">
-            Add
+           + Add new item
           </button>
         }
       </div>

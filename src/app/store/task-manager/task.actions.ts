@@ -1,5 +1,5 @@
 import { StatusEnum } from '@lib/enums/task';
-import { FilterParams, Task, TaskComment } from '@lib/interfaces/task';
+import { Task, TaskComment } from '@lib/interfaces/task';
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { FilterState } from './task.reducer';
 
@@ -18,25 +18,20 @@ export const TaskActions = createActionGroup({
     'Update task success': props<{ task: Task }>(),
     'Update task failure': props<{ error: string }>(),
 
-    'Delete task': props<{ id: number }>(),
-    'Delete task success': emptyProps(),
+    'Delete task': props<{ id: string }>(),
+    'Delete task success': props<{ id: string }>(),
     'Delete task failure': props<{ error: string }>(),
 
-    'Add comment': props<{ comment: TaskComment }>(),
-    'Add comment success': props<{ comment: TaskComment }>(),
+    'Update task status': props<{ id: string; status: StatusEnum }>(),
+
+    'Add comment': props<{ id: string; comment: TaskComment }>(),
+    'Add comment success': props<{ task: Task }>(),
     'Add comment failure': props<{ error: string }>(),
 
     'Add attachment': props<{ attachment: any }>(),
-
-    'Update task status': props<{ id: number; status: StatusEnum }>(),
-
-    'Set search params': props<{ searchParam: string }>(),
-    'Set filters params': props<{ filters: FilterParams }>(),
     'Set search and filters params': props<{
       filters: Partial<FilterState>;
     }>(),
-    'Submit filters': props<{ searchParams: number }>(),
     'Reset filters': emptyProps(),
-    'Refresh filters': emptyProps(),
   },
 });

@@ -1,5 +1,5 @@
 import { LoginRequest } from '@lib/interfaces/auth';
-import { User, UserRS } from '@lib/interfaces/user';
+import { UserRS } from '@lib/interfaces/user';
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 
 export const AuthActions = createActionGroup({
@@ -9,7 +9,6 @@ export const AuthActions = createActionGroup({
     'Login success': props<{ user: UserRS[] }>(),
     'Login failure': props<{ error: string }>(),
     Logout: emptyProps(),
-    'Logout success': emptyProps(),
     'Load users': props<{ users: UserRS[] }>(),
   },
 });

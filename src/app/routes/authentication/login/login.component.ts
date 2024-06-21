@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthActions } from '@store/auth/auth.actions';
-import { selectAuthError, selectAuthisLoading } from '@store/auth/auth.selectos';
+import { selectAuthError, selectAuthIsLoading } from '@store/auth/auth.selectors';
 
 @Component({
   selector: 'app-login',
@@ -31,25 +31,25 @@ export class LoginComponent {
   private readonly _fb = inject(FormBuilder);
   private readonly _store = inject(Store);
   errorMessage$ = this._store.select(selectAuthError);
-  isLoading$ = this._store.select(selectAuthisLoading);
+  isLoading$ = this._store.select(selectAuthIsLoading);
 
   form = this._fb.group({
-    email: this._fb.control({ value: null, disabled: false }, [
+    email: this._fb.control({ value: '', disabled: false }, [
       Validators.required,
       Validators.email,
     ]),
-    password: this._fb.control({ value: null, disabled: false }, [
+    password: this._fb.control({ value: '', disabled: false }, [
       Validators.required,
     ]),
   });
 
   get controls() {
-    return this.form.controls
+    return this.form.controls;
   }
 
   onSubmit(): void {
-    const { email, password } = this.form.value;
-    if (email && password && this.form.valid) {
+    const { email, password } = this.form.getRawValue();
+    if (this.form.valid) {
       this._store.dispatch(
         AuthActions.login({ user: { email, password }, isLoading: true }),
       );

@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@lib/services/auth.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap, tap } from 'rxjs';
+import { map, switchMap } from 'rxjs';
 import { AuthActions } from './auth.actions';
 
 @Injectable()
@@ -17,8 +17,12 @@ export class AuthEffects {
       switchMap((action) => {
         return this._authService.login(action.user).pipe(
           map((response) => {
-            this._router.navigate(['/boards']);
-            return AuthActions.loginSuccess({ user: response });
+            if (response?.length) {
+              this._router.navigate(['/boards']);
+              return AuthActions.loginSuccess({ user: response });
+            } else {
+              return AuthActions.loginFailure({ error: 'User does not exist' });
+            }
           }),
         );
       }),
@@ -29,12 +33,13 @@ export class AuthEffects {
     () => {
       return this._actions$.pipe(
         ofType(AuthActions.logout),
-        switchMap(() => this._authService.logout().pipe(
-          map(() => {
-            this._router.navigate(['/']);
-            return AuthActions.logoutSuccess();
-          })
-        )),
+        switchMap(() =>
+          this._authService.logout().pipe(
+            map(() => {
+              return this._router.navigate(['/login']);
+            }),
+          ),
+        ),
       );
     },
     { dispatch: false },

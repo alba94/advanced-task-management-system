@@ -11,21 +11,22 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  inject,
   Input,
   OnDestroy,
   OnInit,
   Output,
-  inject,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { StatusEnum, statusDisplay } from '@lib/enums/task';
+import { statusDisplay } from '@lib/constants/task.const';
+import { StatusEnum } from '@lib/enums/task';
 import { Task } from '@lib/interfaces/task';
-import { Store, select } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { TaskActions } from '@store/task-manager/task.actions';
 import { selectFilteredTasks } from '@store/task-manager/task.selectors';
 import { UserActions } from '@store/user/user.actions';
-import { Observable, map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { CardGroupComponent } from '../card-group/card-group.component';
 import { CardComponent } from '../card/card.component';
 
@@ -47,17 +48,15 @@ import { CardComponent } from '../card/card.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DragDropComponent implements OnInit, OnDestroy {
-  private intervalId: any;
   private readonly _store = inject(Store);
   @Input() tasks: Task[] = [];
   @Output() emitSelectedData: EventEmitter<Task | null> = new EventEmitter();
+  intervalId: any;
   _statusEnum = StatusEnum;
-  dragging: boolean = false;
   _statusDisplay = statusDisplay;
   statuses = [
     StatusEnum.BACKLOG,
     StatusEnum.TODO,
-    StatusEnum.SELECTED,
     StatusEnum.IN_PROGRESS,
     StatusEnum.DONE,
   ];
@@ -92,7 +91,7 @@ export class DragDropComponent implements OnInit, OnDestroy {
     }
   }
 
-  issueByStatusSorted$ = (status: StatusEnum): Observable<Task[]> =>
+  taskByStatusSorted$ = (status: StatusEnum): Observable<Task[]> =>
     this.filteredTasks$.pipe(
       map((filteredTasks) => {
         return filteredTasks.filter((task) => task.status === status);
@@ -116,7 +115,7 @@ export class DragDropComponent implements OnInit, OnDestroy {
       const droppedTask = event.container.data[event.currentIndex];
       this._store.dispatch(
         TaskActions.updateTaskStatus({
-          id: Number(droppedTask.id),
+          id: droppedTask.id ?? '',
           status,
         }),
       );
@@ -126,7 +125,7 @@ export class DragDropComponent implements OnInit, OnDestroy {
     }
   }
 
-  emitData(task: Task | null) {
+  emitData(task: Task | null): void {
     this.emitSelectedData.emit(task);
   }
 }

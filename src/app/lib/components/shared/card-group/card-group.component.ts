@@ -3,7 +3,6 @@ import { Component, Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { TranslateModule } from '@ngx-translate/core';
 import { ChipComponent } from '../chip/chip.component';
-import { Observable } from 'rxjs';
 import { Task } from '@lib/interfaces/task';
 
 @Component({
