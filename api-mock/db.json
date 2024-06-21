@@ -47,13 +47,14 @@
       "title": "Behind the 900 stars - Update 08/2020",
       "description": "<p>I shared some of my technical decisions behind <a href='http://jira.trungk18.com' rel='noopener noreferrer' target='_blank'>jira.trungk18.com</a> on <a href='https://github.com/SingaporeJS/talk.js/issues/40' rel='noopener noreferrer' target='_blank'>Singapore talk.js August 2020</a> with a very catchy title - <strong>Behind the 900 stars repository 😂</strong> Do you like it? </p><p><br></p><p> Hopefully I can change the title to a thousand stars soon... 🤣</p><p><br></p><p>Thanks for having me!</p><p><br></p><p>See the </p><ul><li>Slide deck ➡ <a href='https://slides.com/trungvose/behind-the-900-star-repository-jira-clone-angular' rel='noopener noreferrer' target='_blank' style='background-color: rgb(255, 255, 255);'>https://slides.com/trungvose/behind-the-900-star-repository-jira-clone-angular</a></li><li><span style='background-color: rgb(255, 255, 255);'>Recorded talk:  </span><a href='https://youtu.be/X_beeihKk7o' rel='noopener noreferrer' target='_blank'>https://youtu.be/X_beeihKk7o</a></li></ul><p><br></p><p><img src='https://pbs.twimg.com/media/EgWe01qUcAIoNdi?format=jpg&amp;name=large' alt='Image'></p><p><br></p>",
       "priority": "Medium",
-      "status": "Todo",
+      "status": "InProgress",
       "type": "Story",
-      "dueDate": "2024-06-19T22:00:00.000Z",
-      "startDate": "2024-05-31T22:00:00.000Z",
+      "dueDate": "2024-06-26T22:00:00.000Z",
+      "startDate": "2024-06-20T22:00:00.000Z",
       "assignedTo": "3",
       "assignedBy": 1,
       "attachments": null,
+      "comment": "koment i ri",
       "comments": [
         {
           "commentedBy": 1,
@@ -84,6 +85,16 @@
           "commentedBy": null,
           "commentedAt": "2024-06-20T19:37:57.627Z",
           "comment": "@"
+        },
+        {
+          "comment": "@User1@User3@User5 comment",
+          "commentedAt": "2024-06-21T07:04:28.143Z",
+          "commentedBy": null
+        },
+        {
+          "comment": "koment i ri",
+          "commentedAt": "2024-06-21T07:17:46.465Z",
+          "commentedBy": 2
         }
       ]
     },
@@ -92,7 +103,7 @@
       "title": "Jira Clone Storybook - Update 10/2020",
       "description": "<h3>What is Storybook</h3><p>Storybook helps you build UI components in isolation from your app's business logic, data, and context. That makes it easy to develop hard-to-reach states. Save these UI states as&nbsp;stories&nbsp;to revisit during development, testing, or QA.</p><h3><br></h3><h3>Jira Clone Storybook</h3><p>This is the collection of components that I wrote for <a href='http://jira.trungk18.com/' rel='noopener noreferrer' target='_blank' style='color: var(--vscode-textLink-foreground);'>jira.trungk18.com</a>, includes:</p><ul><li>Avatar</li><li>Breadcrumbs</li><li>Button</li><li>Input</li><li>More to come...</li></ul><p><br></p><p>Check out the&nbsp;storybook demo&nbsp;-&gt;&nbsp;<a href=\"https://jira-storybook.trungk18.com/\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: var(--color-text-link);\">https://jira-storybook.trungk18.com/</a></p><p><br></p><p><a href=\"https://github.com/trungk18/jira-clone-angular/blob/master/frontend/src/assets/img/jira-storybook.gif\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: var(--color-text-link); background-color: var(--color-bg-primary);\"><img src=\"https://github.com/trungk18/jira-clone-angular/raw/master/frontend/src/assets/img/jira-storybook.gif\" alt=\"Jira clone built with Angular 10, Akita and ng-zorro\"></a></p>",
       "priority": "Medium",
-      "status": "Backlog",
+      "status": "Done",
       "type": "Story",
       "dueDate": "2024-07-30T22:00:00.000Z",
       "startDate": "2024-07-10T22:00:00.000Z",
@@ -122,7 +133,7 @@
       "title": "Angular Spotify",
       "description": "<h3>Hey Angular people, what's up? 😆</h3><p>I wanted to introduce you my latest application: <strong>Angular Spotify.</strong></p><p><br></p><p>It is a simple Spotify client built with Angular 11, Nx workspace, ngrx, TailwindCSS and ng-zorro.</p><p><br></p><p>Check out the&nbsp;live application&nbsp;-&gt; <a href=\"https://spotify.trungk18.com\" rel=\"noopener noreferrer\" target=\"_blank\">https://spotify.trungk18.com</a></p><p><span style=\"color: var(--color-text-link);\">Source code: </span><a href=\"https://github.com/trungk18/angular-spotify\" rel=\"noopener noreferrer\" target=\"_blank\">https://github.com/trungk18/angular-spotify</a></p><p><br></p><p>Spotify premium&nbsp;is required for the Web Playback SDK to play music. If you are using a free account, you can still browse the app, but it couldn't play the music. Sorry about that&nbsp;🤣</p><h2><br></h2><p><a href=\"https://github.com/trungk18/angular-spotify/blob/main/libs/web/shared/assets/src/assets/readme/angular-spotify-demo-short.gif\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: var(--color-text-link); background-color: var(--color-bg-primary);\"><img src=\"https://github.com/trungk18/angular-spotify/raw/main/libs/web/shared/assets/src/assets/readme/angular-spotify-demo-short.gif\" alt=\"Angular Spotify Demo\"></a></p><p><br></p><p><br></p><p><a href=\"https://github.com/trungk18/angular-spotify/blob/main/libs/web/shared/assets/src/assets/readme/angular-spotify-visualization.gif\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: var(--color-text-link); background-color: var(--color-bg-primary);\"><img src=\"https://github.com/trungk18/angular-spotify/raw/main/libs/web/shared/assets/src/assets/readme/angular-spotify-visualization.gif\" alt=\"Angular Spotify Visualizer\"></a></p><p><br></p>",
       "priority": "High",
-      "status": "Backlog",
+      "status": "Done",
       "type": "Story",
       "dueDate": "2024-06-26T22:00:00.000Z",
       "startDate": "2024-06-25T22:00:00.000Z",
@@ -140,7 +151,7 @@
       "id": "3957",
       "dueDate": "2024-06-21T22:00:00.000Z",
       "startDate": "2024-06-01T22:00:00.000Z",
-      "status": "InProgress",
+      "status": "Done",
       "assignedTo": "3",
       "createdAt": "2020-09-15T23:41:37.278Z",
       "updatedAt": "2020-09-15T23:41:37.278Z",
@@ -203,36 +214,6 @@
       "comments": []
     },
     {
-      "id": "9631",
-      "title": "Each issue has a single reporter but can have multiple assignees.",
-      "description": "<h2>Try assigning this issue to <strong><u>Spider Man</u></strong>. <span style='color: rgb(51, 51, 51);'>🤣&nbsp;🤣&nbsp;🤣</span></h2>",
-      "priority": "Low",
-      "status": "Selected",
-      "type": "Task",
-      "dueDate": "2024-06-09T22:00:00.000Z",
-      "startDate": "2024-06-02T22:00:00.000Z",
-      "assignedTo": "1",
-      "assignedBy": 1,
-      "attachments": [],
-      "comments": [
-        {
-          "commentedBy": 1,
-          "commentedAt": "2024-06-19T06:41:31.764Z",
-          "comment": "dcscdxc "
-        },
-        {
-          "commentedBy": 1,
-          "commentedAt": "2024-06-19T06:41:31.764Z",
-          "comment": "dcscdxc "
-        },
-        {
-          "commentedBy": 1,
-          "commentedAt": "2024-06-19T06:41:31.764Z",
-          "comment": "dcscdxc "
-        }
-      ]
-    },
-    {
       "id": "9546",
       "title": "Set up Akita state management",
       "description": "<h2>I heard about Akita and would love to try this</h2><p>Akita is a state management pattern, built on top of RxJS, which takes the idea of multiple data stores from Flux and the immutable updates from Redux, along with the concept of streaming data, to create the Observable Data Stores model.</p><p></p>",
@@ -261,20 +242,6 @@
       "comments": []
     },
     {
-      "id": "9584",
-      "title": "What is Angular Jira clone application?",
-      "description": "<p>There have been a handful of cool Jira-cloned apps written in React/VueJS, which makes me wonder <strong>Why not Angular</strong>? And here you go.</p><p><br></p><p>This is <u>not only</u> a simplified Jira clone built with Angular, but also an example of a <u>modern, real-world</u> Angular codebase.</p><p><br></p><p><strong>Tech stack</strong></p><p><br></p><p><a href='https://raw.githubusercontent.com/trungk18/jira-clone-angular/master/frontend/src/assets/img/jira-clone-tech-stack.png' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214); background-color: rgb(255, 255, 255);'><img src='https://github.com/trungk18/jira-clone-angular/raw/master/frontend/src/assets/img/jira-clone-tech-stack.png' alt='Tech logos'></a></p><p><br></p><ul><li><a href='https://cli.angular.io/' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>Angular CLI</a></li><li><a href='https://datorama.github.io/akita/' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>Akita</a>&nbsp;state management</li><li><a href='https://nestjs.com/' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>NestJS</a></li><li>UI modules:</li><li class='ql-indent-1'><a href='https://tailwindcss.com/' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>TailwindCSS</a></li><li class='ql-indent-1'>Angular CDK&nbsp;<a href='https://material.angular.io/cdk/drag-drop/overview' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>drag and drop</a></li><li class='ql-indent-1'><a href='https://ng.ant.design/docs/introduce/en' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>ng-zorro</a>&nbsp;UI component:&nbsp;<code style='background-color: rgba(27, 31, 35, 0.05);'>tooltip</code>,&nbsp;<code style='background-color: rgba(27, 31, 35, 0.05);'>modal</code>,&nbsp;<code style='background-color: rgba(27, 31, 35, 0.05);'>select</code>,&nbsp;<code style='background-color: rgba(27, 31, 35, 0.05);'>icon</code> and more.</li><li class='ql-indent-1'><a href='https://github.com/KillerCodeMonkey/ngx-quill' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>ngx-quill</a></li><li><a href='https://www.netlify.com/' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>Netlify</a></li><li><a href='https://www.heroku.com/' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>Heroku</a></li></ul>",
-      "type": "Task",
-      "dueDate": "2024-06-28T22:00:00.000Z",
-      "startDate": "2024-06-19T22:00:00.000Z",
-      "status": "Selected",
-      "priority": "Medium",
-      "assignedTo": "1",
-      "createdAt": "2020-06-12T14:40:00.000Z",
-      "updatedAt": "2020-06-12T14:51:00.000Z",
-      "comments": []
-    },
-    {
       "id": "9665",
       "title": "Angular router not working on Netlify on refresh",
       "description": "<p>Old question, but for those who might stumble on it on how to enable angular routing in Netlify. </p><p><br></p><p>See the full answer on <a target='_blank' href='https://stackoverflow.com/a/52312060/3375906'>stackoverflow</a>.</p><p><br></p><p>Create a file <code>_redirects</code> in your <code>src</code> folder, add the following to it:</p><p><br></p><pre class='ql-syntax' spellcheck='false'>/*  /index.html 200",
@@ -286,20 +253,6 @@
       "assignedTo": "1",
       "createdAt": "2020-06-12T14:40:00.000Z",
       "updatedAt": "2020-06-12T14:51:00.000Z",
-      "comments": []
-    },
-    {
-      "id": "9667",
-      "title": "When creating an issue, the assignee list is not working properly on searching",
-      "description": "After searching for an assignee on the list and clear the text, the option label was missing. It could be the bug on the ng-zorro select itself. If you have any idea, feel free to create a pull request. <br/> <br/><img src='https://raw.githubusercontent.com/trungk18/jira-clone-angular/master/frontend/src/assets/img/assignee-bug.gif' alt='Assignee issue' />",
-      "type": "Bug",
-      "dueDate": "2024-06-28T22:00:00.000Z",
-      "startDate": "2024-06-19T22:00:00.000Z",
-      "status": "Selected",
-      "priority": "High",
-      "assignedTo": "1",
-      "createdAt": "2020-06-28T15:30:00.000Z",
-      "updatedAt": "2020-06-28T16:30:00.000Z",
       "comments": []
     },
     {
@@ -323,7 +276,7 @@
       "title": "updated task",
       "description": "sdfsdfsd",
       "priority": "High",
-      "status": "Todo",
+      "status": "Done",
       "type": "Bug",
       "dueDate": "2024-06-21T22:00:00.000Z",
       "startDate": "2024-06-21T22:00:00.000Z",
@@ -341,7 +294,7 @@
       "title": "ssdfdsfsf",
       "description": "jbnjn",
       "priority": "High",
-      "status": "Todo",
+      "status": "Backlog",
       "type": "Bug",
       "dueDate": "2024-06-27T22:00:00.000Z",
       "startDate": "2024-06-19T22:00:00.000Z",

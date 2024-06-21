@@ -30,6 +30,7 @@
     "@ngrx/store": "^17.2.0",
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
+    "angular-mentions": "^1.5.0",
     "crypto-js": "^4.2.0",
     "idb": "^8.0.0",
     "prettier-plugin-organize-imports": "^3.2.4",

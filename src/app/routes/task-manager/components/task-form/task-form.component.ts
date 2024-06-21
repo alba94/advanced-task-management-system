@@ -4,21 +4,32 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { MatDatepickerInputEvent, MatDatepickerModule } from '@angular/material/datepicker';
+import {
+  MatDatepickerInputEvent,
+  MatDatepickerModule,
+} from '@angular/material/datepicker';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { priorityTypesModel, statusTypesModel } from '@lib/constants/task.const';
+import {
+  priorityTypesModel,
+  statusTypesModel,
+} from '@lib/constants/task.const';
 import { PriorityEnum, StatusEnum, TypeEnum } from '@lib/enums/task';
 import { Task, TaskComment } from '@lib/interfaces/task';
+import { UserRS } from '@lib/interfaces/user';
 import { DateValidators } from '@lib/validators/date-validator';
 import { Store } from '@ngrx/store';
-import { TaskActions } from '@store/task-manager/task.actions';
-import { selectNotAdminUsers, selectSystemUsers } from '@store/user/user.selectors';
 import { selectAuthUser } from '@store/auth/auth.selectors';
-import { UserRS } from '@lib/interfaces/user';
+import { TaskActions } from '@store/task-manager/task.actions';
+import {
+  selectNotAdminUsers,
+  selectSystemUsers,
+} from '@store/user/user.selectors';
+import { MentionModule } from 'angular-mentions';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-task-form',
@@ -33,6 +44,7 @@ import { UserRS } from '@lib/interfaces/user';
     MatSelectModule,
     MatDatepickerModule,
     MatFormFieldModule,
+    MentionModule,
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './task-form.component.html',
@@ -44,6 +56,7 @@ export class TaskFormComponent implements OnInit {
   public readonly _dialogRef = inject(MatDialogRef<TaskFormComponent>);
   isEditMode: boolean = false;
   selectedFile: File | null = null;
+  mentionConfig = {items: [] as any[], triggerChar: '@'}
 
   users$ = this._store.select(selectNotAdminUsers);
   allUsers$ = this._store.select(selectSystemUsers);
@@ -81,8 +94,7 @@ export class TaskFormComponent implements OnInit {
     return this.form.controls;
   }
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Task) {
-  }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Task) {}
 
   ngOnInit(): void {
     this._initializeFormValues();
@@ -91,6 +103,7 @@ export class TaskFormComponent implements OnInit {
     });
     this.allUsers$.subscribe((users) => {
       this.usersList = users ?? [];
+      this.mentionConfig.items = users?.map((user) => ({ value: user.id, label: user.username })) ?? [];
     });
   }
 

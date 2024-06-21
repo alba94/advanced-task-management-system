@@ -11,24 +11,24 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  inject,
   Input,
   OnDestroy,
   OnInit,
   Output,
+  inject,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { statusDisplay } from '@lib/constants/task.const';
 import { StatusEnum } from '@lib/enums/task';
 import { Task } from '@lib/interfaces/task';
-import { select, Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { TaskActions } from '@store/task-manager/task.actions';
 import { selectFilteredTasks } from '@store/task-manager/task.selectors';
 import { UserActions } from '@store/user/user.actions';
-import { map, Observable } from 'rxjs';
-import { CardGroupComponent } from '../card-group/card-group.component';
-import { CardComponent } from '../card/card.component';
+import { Observable, map } from 'rxjs';
+import { CardGroupComponent } from '../../../../lib/components/shared/card-group/card-group.component';
+import { CardComponent } from '../../../../lib/components/shared/card/card.component';
 
 @Component({
   selector: 'app-drag-drop',
@@ -65,6 +65,23 @@ export class DragDropComponent implements OnInit, OnDestroy {
     select(selectFilteredTasks),
   );
 
+  groupedTasksByStatus$: Observable<{ status: StatusEnum; tasks: Task[] }[]> =
+    this.filteredTasks$.pipe(
+      map((tasks) => {
+        const groupedTasks = tasks.reduce((acc: any, task) => {
+          const status = task.status as StatusEnum;
+          const existingGroup = acc.find((group: any) => group.status === status);
+          if (existingGroup) {
+            existingGroup.tasks.push(task);
+          } else {
+            acc.push({ status, tasks: [task] });
+          }
+          return acc;
+        }, []);
+        return groupedTasks;
+      }),
+    );
+
   ngOnInit(): void {
     this._store.dispatch(TaskActions.loadTasks());
     this._store.dispatch(UserActions.loadUsers());
@@ -98,13 +115,9 @@ export class DragDropComponent implements OnInit, OnDestroy {
       }),
     );
 
-  drop(event: CdkDragDrop<Task[]>, status: StatusEnum): void {
+  drop(event: CdkDragDrop<Task[]>, task: any, status: StatusEnum): void {
     if (event.previousContainer === event.container) {
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
+      moveItemInArray(task, event.previousIndex, event.currentIndex);
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -112,17 +125,17 @@ export class DragDropComponent implements OnInit, OnDestroy {
         event.previousIndex,
         event.currentIndex,
       );
-      const droppedTask = event.container.data[event.currentIndex];
-      this._store.dispatch(
-        TaskActions.updateTaskStatus({
-          id: droppedTask.id ?? '',
-          status,
-        }),
-      );
-      // setInterval(() => {
-      //   this._store.dispatch(TaskActions.loadTasks());
-      // }, 5000);
     }
+    const droppedTask = event.container.data[event.currentIndex];
+    this._store.dispatch(
+      TaskActions.updateTaskStatus({
+        id: droppedTask.id ?? '',
+        status,
+      }),
+    );
+    // setInterval(() => {
+    //   this._store.dispatch(TaskActions.loadTasks());
+    // }, 5000);
   }
 
   emitData(task: Task | null): void {

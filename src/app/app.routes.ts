@@ -18,7 +18,7 @@ export const routes: Routes = [
       {
         path: 'admin',
         loadChildren: async () =>
-          (await import('@routes/dashboard/dashboard.routes')).ROUTES,
+          (await import('@routes/admin/admin.routes')).ROUTES,
         canLoad: [AuthGuard.canLoad],
         data: { roles: [UserRole.ADMIN] },
       },
@@ -26,7 +26,7 @@ export const routes: Routes = [
         path: 'dashboard',
         loadChildren: async () =>
           (await import('@routes/dashboard/dashboard.routes')).ROUTES,
-        data: { roles: [UserRole.USER] },
+        data: { roles: [UserRole.USER, UserRole.ADMIN] },
       },
       {
         path: 'boards',

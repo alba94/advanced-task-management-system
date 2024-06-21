@@ -2,15 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  /* Remove arrow on input type number */
-  input[type='number']::-webkit-inner-spin-button,
-  input[type='number']::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-}
-
 .mat-autocomplete-panel {
   @apply bg-white border border-gray shadow-lg rounded-md;
 }
@@ -92,4 +83,8 @@
 
 .sticky {
   position: sticky !important;
+}
+
+.cdk-global-overlay-wrapper {
+  overflow: auto !important;
 }

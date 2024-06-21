@@ -1,0 +1,38 @@
+<div class="grid gap-4 grid-cols-4" cdkDropListGroup>
+  @for (
+    groupedTasksByStatus of groupedTasksByStatus$ | async;
+    track groupedTasksByStatus
+  ) {
+    <app-card-group
+      [title]="groupedTasksByStatus.status"
+      [totalItems]="groupedTasksByStatus.tasks"
+    >
+      <div
+        class="border block rounded overflow-hidden min-h-16 bg-white"
+        cdkDropList
+        [cdkDropListData]="groupedTasksByStatus.tasks"
+        (cdkDropListDropped)="drop($event, groupedTasksByStatus.tasks, groupedTasksByStatus.status)"
+      >
+        @for (task of groupedTasksByStatus.tasks; track task) {
+          <app-card cdkDrag (click)="emitData(task)" class="cursor-pointer">
+            <div card-title>{{ task.title }}</div>
+            <div card-content class="break-words text-sm text-gray-600 pb-4">
+              <!-- <div class="text-xs text-gray-500">
+                <span>Deadline: {{ task.dueDate | date }}</span>
+              </div> -->
+            </div>
+            <div
+              card-footer
+              class="flex justify-between items-center mt-4"
+            ></div>
+          </app-card>
+        }
+        @if (groupedTasksByStatus.status === _statusEnum.BACKLOG) {
+          <button mat-button class="w-full" (click)="emitData(null)">
+            + Add new item
+          </button>
+        }
+      </div>
+    </app-card-group>
+  }
+</div>

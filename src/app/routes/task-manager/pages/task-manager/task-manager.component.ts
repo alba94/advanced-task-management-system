@@ -3,9 +3,9 @@ import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BoardFiltersComponent } from '@lib/components/shared/board-filters/board-filters.component';
-import { DragDropComponent } from '@lib/components/shared/drag-drop/drag-drop.component';
 import { Task } from '@lib/interfaces/task';
 import { TaskFormComponent } from '@routes/task-manager/components/task-form/task-form.component';
+import { DragDropComponent } from '@routes/task-manager/pages/drag-drop/drag-drop.component';
 
 @Component({
   selector: 'app-task-manager',
@@ -24,7 +24,8 @@ export class TaskManagerComponent {
 
   openTaskModal(task: Task | null): void {
     this.dialog.open(TaskFormComponent, {
-      width: '950px',
+      width: '1000px',
+      height: 'auto',
       data: task,
     });
   }

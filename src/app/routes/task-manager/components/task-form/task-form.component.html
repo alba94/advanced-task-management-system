@@ -56,7 +56,9 @@
             <mat-form-field appearance="outline">
               <textarea
                 #textarea
+                [mentionConfig]="mentionConfig"
                 formControlName="comment"
+
                 placeholder="Add a comment"
                 [rows]="2"
                 matInput
